@@ -10,7 +10,8 @@ class ArticleListLoading extends ArticleListState {
 
 class ArticleListLoaded extends ArticleListState {
   final List<ArticleModel> articles;
-  const ArticleListLoaded(this.articles);
+  final String query;
+  const ArticleListLoaded(this.articles, {this.query = ''});
 }
 
 class ArticleListNotFound extends ArticleListState {

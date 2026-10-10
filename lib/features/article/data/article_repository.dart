@@ -5,7 +5,6 @@ import 'mock_articles.dart';
 class ArticleRepository implements IArticleRepository {
   @override
   Future<List<ArticleModel>> getArticles() async {
-    // Имитация задержки сети (чтобы UI успел показать Loading)
     await Future.delayed(const Duration(milliseconds: 300));
     return mockArticles;
   }
@@ -18,5 +17,20 @@ class ArticleRepository implements IArticleRepository {
     } catch (e) {
       return null;
     }
+  }
+
+  @override
+  Future<List<ArticleModel>> searchArticles(String query) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    if (query.trim().isEmpty) return mockArticles;
+
+    final lowerQuery = query.toLowerCase();
+    return mockArticles.where((article) {
+      final titleMatch = article.title.toLowerCase().contains(lowerQuery);
+      final authorMatch = article.authors
+          .any((author) => author.toLowerCase().contains(lowerQuery));
+      final journalMatch = article.journal.toLowerCase().contains(lowerQuery);
+      return titleMatch || authorMatch || journalMatch;
+    }).toList();
   }
 }
