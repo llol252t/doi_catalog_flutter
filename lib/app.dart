@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<ArticleListCubit>( 
           create: (context) => ArticleListCubit(
             context.read<IArticleRepository>(),
-          )..load(),
+          )..search(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(

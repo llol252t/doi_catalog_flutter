@@ -7,26 +7,10 @@ class ArticleListCubit extends Cubit<ArticleListState> {
 
   ArticleListCubit(this._repository) : super(const ArticleListLoading());
 
-  Future<void> load() async {
+  Future<void> search([String query = '']) async {
     emit(const ArticleListLoading());
     try {
-      final articles = await _repository.getArticles();
-      if (isClosed) return;
-      if (articles.isEmpty) {
-        emit(const ArticleListNotFound());
-      } else {
-        emit(ArticleListLoaded(articles));
-      }
-    } catch (e) {
-      if (isClosed) return;
-      emit(const ArticleListNotFound());
-    }
-  }
-
-  Future<void> search(String query) async {
-    emit(const ArticleListLoading());
-    try {
-      final articles = await _repository.searchArticles(query);
+      final articles = await _repository.getArticles(query: query);
       if (isClosed) return;
       if (articles.isEmpty) {
         emit(const ArticleListNotFound());
