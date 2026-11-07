@@ -11,12 +11,14 @@ class ArticleDetailCubit extends Cubit<ArticleDetailState> {
     emit(const ArticleDetailLoading());
     try {
       final article = await _repository.getArticleById(doi);
+      if (isClosed) return;
       if (article == null) {
         emit(const ArticleDetailNotFound());
       } else {
         emit(ArticleDetailLoaded(article));
       }
     } catch (e) {
+      if (isClosed) return;
       emit(const ArticleDetailNotFound());
     }
   }

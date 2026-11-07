@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, themeMode) {
           return MaterialApp.router(
-            title: 'Crossref Articles',
+            onGenerateTitle: (context) =>
+                AppLocalizations.of(context)!.appTitle,
             theme: AppTheme.light(),
             darkTheme: AppTheme.dark(),
             themeMode: themeMode,

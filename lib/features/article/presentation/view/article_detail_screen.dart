@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 
 
@@ -21,10 +20,6 @@ class ArticleDetailScreen extends StatelessWidget {
       )..load(doi),
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => context.pop(),
-          ),
           title: Text(AppLocalizations.of(context)!.articleTitle),
         ),
         body: BlocBuilder<ArticleDetailCubit, ArticleDetailState>(

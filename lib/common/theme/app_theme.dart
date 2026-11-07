@@ -41,35 +41,3 @@ class AppTheme {
     );
   }
 }
-// import 'package:flutter/material.dart';
-// import 'app_colors.dart';
-
-// class AppTheme {
-//   AppTheme._();
-
-//   static ThemeData light() {
-//     return ThemeData(
-//       useMaterial3: true,
-//       brightness: Brightness.light,
-//       colorScheme: const ColorScheme.light(
-//         primary: AppColors.lightPrimary,
-//         secondary: AppColors.lightSecondary,
-//         surface: AppColors.lightSurface,
-//       ),
-//       scaffoldBackgroundColor: AppColors.lightBackground,
-//     );
-//   }
-
-//   static ThemeData dark() {
-//     return ThemeData(
-//       useMaterial3: true,
-//       brightness: Brightness.dark,
-//       colorScheme: const ColorScheme.dark(
-//         primary: AppColors.darkPrimary,
-//         secondary: AppColors.darkSecondary,
-//         surface: AppColors.darkSurface,
-//       ),
-//       scaffoldBackgroundColor: AppColors.darkBackground,
-//     );
-//   }
-// }

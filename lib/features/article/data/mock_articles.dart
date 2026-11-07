@@ -12,7 +12,7 @@ final List<ArticleModel> mockArticles = [
   ),
   const ArticleModel(
     doi: '10.1007/bfb0086411',
-    title: 'Spherical finite type submanifolds.Applications',
+    title: 'Spherical finite type submanifolds. Applications',
     authors: ['Manuel Barros'],
     year: 1989,
     journal: 'Lecture Notes in Mathematics',

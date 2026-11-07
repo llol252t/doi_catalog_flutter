@@ -4,7 +4,6 @@ import 'article_list_state.dart';
 
 class ArticleListCubit extends Cubit<ArticleListState> {
   final IArticleRepository _repository;
-  String _query = '';
 
   ArticleListCubit(this._repository) : super(const ArticleListLoading());
 
@@ -12,28 +11,30 @@ class ArticleListCubit extends Cubit<ArticleListState> {
     emit(const ArticleListLoading());
     try {
       final articles = await _repository.getArticles();
-      _query = '';
+      if (isClosed) return;
       if (articles.isEmpty) {
         emit(const ArticleListNotFound());
       } else {
-        emit(ArticleListLoaded(articles, query: _query));
+        emit(ArticleListLoaded(articles));
       }
     } catch (e) {
+      if (isClosed) return;
       emit(const ArticleListNotFound());
     }
   }
 
   Future<void> search(String query) async {
-    _query = query;
     emit(const ArticleListLoading());
     try {
       final articles = await _repository.searchArticles(query);
+      if (isClosed) return;
       if (articles.isEmpty) {
         emit(const ArticleListNotFound());
       } else {
-        emit(ArticleListLoaded(articles, query: _query));
+        emit(ArticleListLoaded(articles, query: query));
       }
     } catch (e) {
+      if (isClosed) return;
       emit(const ArticleListNotFound());
     }
   }
