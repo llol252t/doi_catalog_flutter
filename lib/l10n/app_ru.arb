@@ -1,0 +1,9 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Статьи Crossref",
+  "articlesTitle": "Статьи",
+  "articleTitle": "Статья",
+  "nothingFound": "Ничего не найдено",
+  "articleNotFound": "Статья не найдена",
+  "searchHint": "Поиск"
+}

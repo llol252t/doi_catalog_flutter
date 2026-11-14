@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "appTitle": "Crossref Articles",
+  "articlesTitle": "Articles",
+  "articleTitle": "Article",
+  "nothingFound": "Nothing found",
+  "articleNotFound": "Article not found",
+  "searchHint": "Search"
+}
