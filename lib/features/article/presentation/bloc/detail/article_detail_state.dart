@@ -1,3 +1,4 @@
+import '../../../../../common/network/load_exception.dart';
 import '../../../domain/article_model.dart';
 
 sealed class ArticleDetailState {
@@ -15,4 +16,9 @@ class ArticleDetailLoaded extends ArticleDetailState {
 
 class ArticleDetailNotFound extends ArticleDetailState {
   const ArticleDetailNotFound();
+}
+
+class ArticleDetailError extends ArticleDetailState {
+  final LoadException exception;
+  const ArticleDetailError(this.exception);
 }

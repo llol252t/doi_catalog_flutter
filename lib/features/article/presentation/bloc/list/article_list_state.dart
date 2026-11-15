@@ -1,3 +1,4 @@
+import '../../../../../common/network/load_exception.dart';
 import '../../../domain/article_model.dart';
 
 sealed class ArticleListState {
@@ -16,4 +17,8 @@ class ArticleListLoaded extends ArticleListState {
 
 class ArticleListNotFound extends ArticleListState {
   const ArticleListNotFound();
+}
+final class ArticleListError extends ArticleListState {
+  final LoadException exception;
+  const ArticleListError(this.exception);
 }

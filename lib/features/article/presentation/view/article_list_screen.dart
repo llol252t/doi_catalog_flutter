@@ -138,6 +138,9 @@
                         AppLocalizations.of(context)!.nothingFound,
                       ),
                     ),
+                  ArticleListError() => Center(child: Text(AppLocalizations.of(context)!.nothingFound,
+                    ),
+                  ),
                 };
               },
             ),

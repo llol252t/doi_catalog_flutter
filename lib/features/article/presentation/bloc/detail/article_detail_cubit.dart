@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../common/network/load_exception.dart';
 import '../../../domain/i_article_repository.dart';
 import 'article_detail_state.dart';
 
@@ -17,9 +18,12 @@ class ArticleDetailCubit extends Cubit<ArticleDetailState> {
       } else {
         emit(ArticleDetailLoaded(article));
       }
+    } on LoadException catch (e) {
+      if (isClosed) return;
+      emit(ArticleDetailError(e));
     } catch (e) {
       if (isClosed) return;
-      emit(const ArticleDetailNotFound());
+      emit(const ArticleDetailError(BadResponseException()));
     }
   }
 }

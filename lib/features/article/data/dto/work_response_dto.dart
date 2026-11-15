@@ -6,7 +6,7 @@ part 'work_response_dto.g.dart';
 @JsonSerializable()
 class WorkResponseDto {
   final String status;
-  final ArticleDto message;   // здесь message — ОДНА статья, без items
+  final ArticleDto message;
 
   const WorkResponseDto({required this.status, required this.message});
 

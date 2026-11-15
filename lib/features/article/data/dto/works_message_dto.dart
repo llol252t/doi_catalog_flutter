@@ -6,10 +6,10 @@ part 'works_message_dto.g.dart';
 @JsonSerializable()
 class WorksMessageDto {
   @JsonKey(name: 'total-results')
-  final int totalResults;          // сколько всего записей (для пагинации)
-  final List<ArticleDto> items;    // сами статьи
+  final int totalResults;
+  final List<ArticleDto> items;
   @JsonKey(name: 'next-cursor')
-  final String? nextCursor;        // курсор следующей страницы
+  final String? nextCursor;
 
   const WorksMessageDto({
     required this.totalResults,

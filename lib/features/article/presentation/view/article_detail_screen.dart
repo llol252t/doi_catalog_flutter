@@ -71,6 +71,8 @@ class ArticleDetailScreen extends StatelessWidget {
               ArticleDetailNotFound() => Center(
                   child: Text(AppLocalizations.of(context)!.articleNotFound),
                 ),
+              ArticleDetailError() => Center(child: Text(AppLocalizations.of(context)!.articleNotFound),
+              ),
             };
           },
         ),
