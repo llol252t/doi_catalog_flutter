@@ -6,6 +6,7 @@ part 'article_dto.g.dart';
 
 @JsonSerializable()
 class ArticleDto {
+  @JsonKey(name: 'DOI')
   final String? doi;
   final List<String>? title;
   final List<AuthorDto>? author;

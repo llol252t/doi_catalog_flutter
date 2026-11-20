@@ -29,3 +29,17 @@ final class ServerException extends LoadException {
 final class BadResponseException extends LoadException {
   const BadResponseException();
 }
+
+/// Человекочитаемое сообщение для показа на экране ошибки.
+extension LoadExceptionMessage on LoadException {
+  String get message => switch (this) {
+    NoConnectionException() => 'Не удалось подключиться к Crossref',
+    TimeoutLoadException() => 'Сервер не ответил за отведённое время',
+    NotFoundException() => 'Запись не найдена',
+    ServerException(statusCode: 429) =>
+      'Crossref получил слишком много запросов. Попробуйте чуть позже',
+    ServerException(:final statusCode) =>
+      statusCode != null ? 'Ошибка сервера ($statusCode)' : 'Ошибка сервера',
+    BadResponseException() => 'Не удалось разобрать ответ сервера',
+  };
+}

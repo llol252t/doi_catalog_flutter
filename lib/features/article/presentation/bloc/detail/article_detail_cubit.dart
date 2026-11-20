@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../common/network/load_exception.dart';
 import '../../../domain/i_article_repository.dart';
 import 'article_detail_state.dart';
@@ -9,6 +10,11 @@ class ArticleDetailCubit extends Cubit<ArticleDetailState> {
   ArticleDetailCubit(this._repository) : super(const ArticleDetailLoading());
 
   Future<void> load(String doi) async {
+    if (doi.isEmpty) {
+      emit(const ArticleDetailNotFound());
+      return;
+    }
+
     emit(const ArticleDetailLoading());
     try {
       final article = await _repository.getArticleById(doi);

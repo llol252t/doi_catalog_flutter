@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-import '../dto/article_dto.dart';
 import '../dto/work_response_dto.dart';
 import '../dto/works_response_dto.dart';
 
@@ -9,10 +8,17 @@ class ArticleApiClient {
 
   final Dio _dio;
 
+  static const pageSize = 20;
+
   Future<WorksResponseDto> getWorks({String query = '', String? cursor}) async {
-    final response = await _getJson('/works', queryParameters: {'query': query, 'rows': 20,
-      if (cursor != null) 'cursor': cursor,
-    });
+    final response = await _getJson(
+      '/works',
+      queryParameters: {
+        if (query.isNotEmpty) 'query': query,
+        'rows': pageSize,
+        'cursor': cursor ?? '*',
+      },
+    );
     return WorksResponseDto.fromJson(response);
   }
 
@@ -21,7 +27,8 @@ class ArticleApiClient {
     return WorkResponseDto.fromJson(response);
   }
 
-  Future<Map<String, dynamic>> _getJson(String path, {
+  Future<Map<String, dynamic>> _getJson(
+    String path, {
     Map<String, Object>? queryParameters,
   }) async {
     final response = await _dio.get<Map<String, dynamic>>(
@@ -31,4 +38,3 @@ class ArticleApiClient {
     return response.data ?? (throw const FormatException('Пустой ответ'));
   }
 }
-// 28:30, 50:00

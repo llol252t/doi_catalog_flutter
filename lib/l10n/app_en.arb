@@ -5,5 +5,7 @@
   "articleTitle": "Article",
   "nothingFound": "Nothing found",
   "articleNotFound": "Article not found",
-  "searchHint": "Search"
+  "searchHint": "Search",
+  "loadMore": "Load more",
+  "retry": "Retry"
 }

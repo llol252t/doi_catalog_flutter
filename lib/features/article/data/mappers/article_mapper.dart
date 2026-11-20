@@ -5,19 +5,28 @@ extension ArticleDtoMapper on ArticleDto {
   ArticleModel toModel() {
     return ArticleModel(
       doi: doi ?? '',
-      title: title?.firstOrNull ?? '',
+      title: _cleanText(title?.firstOrNull),
       authors: author
           ?.map((a) => '${a.given ?? ''} ${a.family ?? ''}'.trim())
+          .where((name) => name.isNotEmpty)
           .toList() ??
           [],
       year: issued?.dateParts?.firstOrNull?.firstOrNull ?? 0,
-      journal: containerTitle?.firstOrNull ?? '',
+      journal: _cleanText(containerTitle?.firstOrNull),
       type: type ?? '',
-      abstractText: abstractText
-          ?.replaceAll(RegExp(r'<[^>]*>'), '')
-          .replaceAll(RegExp(r'\s+'), ' ')
-          .trim() ??
-          '',
+      abstractText: _cleanText(abstractText),
     );
+  }
+
+  String _cleanText(String? value) {
+    if (value == null) return '';
+    var text = value.replaceAll(RegExp(r'<[^>]*>'), '');
+    text = text
+        .replaceAll('&amp;', '&')
+        .replaceAll('&lt;', '<')
+        .replaceAll('&gt;', '>')
+        .replaceAll('&quot;', '"')
+        .replaceAll('&#39;', "'");
+    return text.replaceAll(RegExp(r'\s+'), ' ').trim();
   }
 }

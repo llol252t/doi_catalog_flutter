@@ -26,4 +26,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchHint => 'Search';
+
+  @override
+  String get loadMore => 'Load more';
+
+  @override
+  String get retry => 'Retry';
 }

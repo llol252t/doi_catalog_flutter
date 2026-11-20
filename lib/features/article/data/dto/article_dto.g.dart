@@ -7,7 +7,7 @@ part of 'article_dto.dart';
 // **************************************************************************
 
 ArticleDto _$ArticleDtoFromJson(Map<String, dynamic> json) => ArticleDto(
-  doi: json['doi'] as String?,
+  doi: json['DOI'] as String?,
   title: (json['title'] as List<dynamic>?)?.map((e) => e as String).toList(),
   author: (json['author'] as List<dynamic>?)
       ?.map((e) => AuthorDto.fromJson(e as Map<String, dynamic>))
@@ -24,7 +24,7 @@ ArticleDto _$ArticleDtoFromJson(Map<String, dynamic> json) => ArticleDto(
 
 Map<String, dynamic> _$ArticleDtoToJson(ArticleDto instance) =>
     <String, dynamic>{
-      'doi': instance.doi,
+      'DOI': instance.doi,
       'title': instance.title,
       'author': instance.author,
       'issued': instance.issued,

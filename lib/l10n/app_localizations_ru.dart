@@ -26,4 +26,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get searchHint => 'Поиск';
+
+  @override
+  String get loadMore => 'Загрузить ещё';
+
+  @override
+  String get retry => 'Повторить';
 }
