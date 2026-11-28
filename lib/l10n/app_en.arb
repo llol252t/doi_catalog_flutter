@@ -5,5 +5,21 @@
   "articleTitle": "Article",
   "nothingFound": "Nothing found",
   "articleNotFound": "Article not found",
-  "searchHint": "Search"
+  "searchHint": "Search",
+  "loadMore": "Load more",
+  "retry": "Retry",
+  "crossrefConnectionError": "Could not connect to Crossref",
+  "requestTimeout": "The server did not respond in time",
+  "recordNotFound": "Record not found",
+  "crossrefRateLimit": "Crossref received too many requests. Try again shortly",
+  "serverError": "Server error",
+  "serverErrorWithStatus": "Server error ({statusCode})",
+  "@serverErrorWithStatus": {
+    "placeholders": {
+      "statusCode": {
+        "type": "int"
+      }
+    }
+  },
+  "invalidServerResponse": "Could not read the server response"
 }

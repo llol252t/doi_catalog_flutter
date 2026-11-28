@@ -133,6 +133,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get searchHint;
+
+  /// No description provided for @loadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get loadMore;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @crossrefConnectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect to Crossref'**
+  String get crossrefConnectionError;
+
+  /// No description provided for @requestTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The server did not respond in time'**
+  String get requestTimeout;
+
+  /// No description provided for @recordNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Record not found'**
+  String get recordNotFound;
+
+  /// No description provided for @crossrefRateLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossref received too many requests. Try again shortly'**
+  String get crossrefRateLimit;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error'**
+  String get serverError;
+
+  /// No description provided for @serverErrorWithStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error ({statusCode})'**
+  String serverErrorWithStatus(int statusCode);
+
+  /// No description provided for @invalidServerResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read the server response'**
+  String get invalidServerResponse;
 }
 
 class _AppLocalizationsDelegate

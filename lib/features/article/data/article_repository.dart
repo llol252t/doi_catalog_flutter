@@ -1,31 +1,38 @@
+import '../../../common/network/load_exception.dart';
 import '../domain/article_model.dart';
 import '../domain/i_article_repository.dart';
-import 'mock_articles.dart';
+import 'api/article_api.dart';
+import 'data_sources/i_article_data_source.dart';
+import 'mappers/article_mapper.dart';
 
 class ArticleRepository implements IArticleRepository {
+  ArticleRepository(this._dataSource);
+
+  final IArticleDataSource _dataSource;
+
   @override
-  Future<List<ArticleModel>> getArticles({String query = ''}) async {
-    await Future.delayed(const Duration(milliseconds: 300));
-
-    final trimmedQuery = query.trim();
-    if (trimmedQuery.isEmpty) return mockArticles;
-
-    final lowerQuery = trimmedQuery.toLowerCase();
-    return mockArticles.where((article) {
-      final titleMatch = article.title.toLowerCase().contains(lowerQuery);
-      final authorMatch = article.authors
-          .any((author) => author.toLowerCase().contains(lowerQuery));
-      final journalMatch = article.journal.toLowerCase().contains(lowerQuery);
-      return titleMatch || authorMatch || journalMatch;
-    }).toList();
+  Future<ArticlePage> getArticles({String query = '', String? cursor}) async {
+    final response = await _dataSource.getWorks(query: query, cursor: cursor);
+    final message = response.message;
+    final nextCursor = message.nextCursor;
+    return (
+      articles: message.items.map((dto) => dto.toModel()).toList(),
+      nextCursor:
+          message.items.length >= ArticleApiClient.pageSize &&
+              nextCursor != null &&
+              nextCursor.isNotEmpty
+          ? nextCursor
+          : null,
+    );
   }
 
   @override
   Future<ArticleModel?> getArticleById(String doi) async {
-    await Future.delayed(const Duration(milliseconds: 200));
     try {
-      return mockArticles.firstWhere((a) => a.doi == doi);
-    } catch (e) {
+      final response = await _dataSource.getWork(doi);
+      final dto = response.message;
+      return dto.toModel();
+    } on NotFoundException {
       return null;
     }
   }
