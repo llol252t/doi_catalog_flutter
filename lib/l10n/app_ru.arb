@@ -7,5 +7,12 @@
   "articleNotFound": "Статья не найдена",
   "searchHint": "Поиск",
   "loadMore": "Загрузить ещё",
-  "retry": "Повторить"
+  "retry": "Повторить",
+  "crossrefConnectionError": "Не удалось подключиться к Crossref",
+  "requestTimeout": "Сервер не ответил за отведённое время",
+  "recordNotFound": "Запись не найдена",
+  "crossrefRateLimit": "Crossref получил слишком много запросов. Попробуйте чуть позже",
+  "serverError": "Ошибка сервера",
+  "serverErrorWithStatus": "Ошибка сервера ({statusCode})",
+  "invalidServerResponse": "Не удалось разобрать ответ сервера"
 }

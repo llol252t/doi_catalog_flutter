@@ -32,4 +32,28 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get retry => 'Повторить';
+
+  @override
+  String get crossrefConnectionError => 'Не удалось подключиться к Crossref';
+
+  @override
+  String get requestTimeout => 'Сервер не ответил за отведённое время';
+
+  @override
+  String get recordNotFound => 'Запись не найдена';
+
+  @override
+  String get crossrefRateLimit =>
+      'Crossref получил слишком много запросов. Попробуйте чуть позже';
+
+  @override
+  String get serverError => 'Ошибка сервера';
+
+  @override
+  String serverErrorWithStatus(int statusCode) {
+    return 'Ошибка сервера ($statusCode)';
+  }
+
+  @override
+  String get invalidServerResponse => 'Не удалось разобрать ответ сервера';
 }

@@ -17,30 +17,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 1. Собираем всю цепочку зависимостей ДО MultiBlocProvider
     final apiClient = ArticleApiClient(DioClient.create());
     final dataSource = NetworkArticleDataSource(apiClient);
     final repository = ArticleRepository(dataSource);
 
     return MultiBlocProvider(
       providers: [
-        // 2. Отдаем репозиторий всем, кому он нужен
         RepositoryProvider<IArticleRepository>.value(
           value: repository,
         ),
 
-        // 3. Тема
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit(),
         ),
 
-        // 4. Cubit для списка статей (создаем глобально)
         BlocProvider<ArticleListCubit>(
           create: (context) => ArticleListCubit(repository)..search(),
         ),
 
-        // ⚠️ ArticleDetailCubit мы НЕ создаем здесь!
-        // Он будет создаваться локально на экране детализации (ArticleDetailScreen).
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, themeMode) {

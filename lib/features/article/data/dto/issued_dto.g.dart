@@ -7,9 +7,7 @@ part of 'issued_dto.dart';
 // **************************************************************************
 
 IssuedDto _$IssuedDtoFromJson(Map<String, dynamic> json) => IssuedDto(
-  dateParts: (json['date-parts'] as List<dynamic>?)
-      ?.map((e) => (e as List<dynamic>).map((e) => (e as num).toInt()).toList())
-      .toList(),
+  dateParts: IssuedDto._parseDateParts(json['date-parts']),
   dateTime: json['date-time'] as String?,
 );
 

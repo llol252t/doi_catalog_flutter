@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../common/network/load_exception.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/load_exception_localization.dart';
 import '../../domain/article_model.dart';
 import '../../domain/i_article_repository.dart';
 import '../bloc/detail/article_detail_cubit.dart';
@@ -34,7 +34,7 @@ class ArticleDetailScreen extends StatelessWidget {
               ArticleDetailError(:final exception) => Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(exception.message, textAlign: TextAlign.center),
+                  Text(exception.localizedMessage(l10n), textAlign: TextAlign.center),
                   const SizedBox(height: 12),
                   FilledButton(
                     onPressed: () =>

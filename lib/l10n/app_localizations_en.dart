@@ -32,4 +32,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get retry => 'Retry';
+
+  @override
+  String get crossrefConnectionError => 'Could not connect to Crossref';
+
+  @override
+  String get requestTimeout => 'The server did not respond in time';
+
+  @override
+  String get recordNotFound => 'Record not found';
+
+  @override
+  String get crossrefRateLimit =>
+      'Crossref received too many requests. Try again shortly';
+
+  @override
+  String get serverError => 'Server error';
+
+  @override
+  String serverErrorWithStatus(int statusCode) {
+    return 'Server error ($statusCode)';
+  }
+
+  @override
+  String get invalidServerResponse => 'Could not read the server response';
 }

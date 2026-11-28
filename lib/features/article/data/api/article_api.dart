@@ -11,7 +11,7 @@ class ArticleApiClient {
   static const pageSize = 20;
 
   Future<WorksResponseDto> getWorks({String query = '', String? cursor}) async {
-    final response = await _getJson(
+    final json = await _getJson(
       '/works',
       queryParameters: {
         if (query.isNotEmpty) 'query': query,
@@ -20,6 +20,7 @@ class ArticleApiClient {
       },
     );
     return WorksResponseDto.fromJson(response);
+
   }
 
   Future<WorkResponseDto> getWork(String doi) async {

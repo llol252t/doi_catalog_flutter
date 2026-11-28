@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../../common/network/load_exception.dart';
+import '../../../../l10n/load_exception_localization.dart';
 import '../../../../common/theme/theme_cubit.dart';
 import '../bloc/list/article_list_cubit.dart';
 import '../bloc/list/article_list_state.dart';
@@ -32,9 +32,10 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.articlesTitle),
+        title: Text(l10n.articlesTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),
@@ -51,7 +52,7 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
               builder: (context, value, child) => TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.searchHint,
+                  hintText: l10n.searchHint,
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -156,18 +157,18 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
                     },
                   ),
                   ArticleListNotFound() => Center(
-                    child: Text(AppLocalizations.of(context)!.nothingFound),
+                    child: Text(l10n.nothingFound),
                   ),
                   ArticleListError(:final exception) => Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(exception.message),
+                        Text(exception.localizedMessage(l10n)),
                         const SizedBox(height: 12),
                         FilledButton(
                           onPressed: () =>
                               context.read<ArticleListCubit>().retry(),
-                          child: Text(AppLocalizations.of(context)!.retry),
+                          child: Text(l10n.retry),
                         ),
                       ],
                     ),
@@ -199,7 +200,7 @@ class _LoadMoreFooter extends StatelessWidget {
           : Column(
               children: [
                 if (error != null)
-                  Text(error.message, textAlign: TextAlign.center),
+                  Text(error.localizedMessage(l10n), textAlign: TextAlign.center),
                 OutlinedButton(
                   onPressed: context.read<ArticleListCubit>().loadMore,
                   child: Text(error == null ? l10n.loadMore : l10n.retry),
